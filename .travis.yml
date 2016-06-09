@@ -53,13 +53,13 @@ install:
   - cd ..
   
   - cd boost_1_57_0/
-  - if [ ! -f "b2" ]; then sudo bash bootstrap.sh --prefix=/usr/local --with-libraries=system,chrono,thread,date_time,atomic; fi
+  - sudo bash bootstrap.sh --prefix=/usr/local --with-libraries=system,chrono,thread,date_time,atomic
   - sudo ./b2 variant=${BUILD_TYPE,,} link=static threading=multi address-model=32 runtime-link=shared -j2 install
   - cd ..
   - sudo ldconfig
 
 before_script:
-  - mysql -u root -e "CREATE DATABASE IF NOT EXISTS test;" -uroot
+  - mysql -u root -e "CREATE DATABASE IF NOT EXISTS test;"
   - cmake . -DCMAKE_INSTALL_PREFIX=${SAMP_SERVER_ROOT} -DCMAKE_BUILD_TYPE=${BUILD_TYPE} -DBUILD_TESTS=ON -DBUILD_STATIC=${STATIC_BUILD}
 
 script:
