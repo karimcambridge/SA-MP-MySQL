@@ -47,9 +47,9 @@ before_install:
 
 install:
   - cd mysql-connector-c-6.1.6-src/
-  - cmake . -DCMAKE_BUILD_TYPE=${BUILD_TYPE} -DCMAKE_CXX_FLAGS=-m32 -DCMAKE_C_FLAGS=-m32 -DCMAKE_INSTALL_PREFIX=/usr -DINSTALL_LAYOUT=DEB > /dev/null
-  - make -j2 > /dev/null
-  - sudo make install > /dev/null
+  - cmake . -DCMAKE_BUILD_TYPE=${BUILD_TYPE} -DCMAKE_CXX_FLAGS=-m32 -DCMAKE_C_FLAGS=-m32 -DCMAKE_INSTALL_PREFIX=/usr -DINSTALL_LAYOUT=DEB
+  - make -j2
+  - sudo make install
   - cd ..
   
   - cd boost_1_57_0/
