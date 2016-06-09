@@ -72,3 +72,7 @@ script:
   - samp-server-cli -o -g unit_test -d mysql.so -T 60
 
 after_script: cat ${SAMP_SERVER_ROOT}/logs/plugins/mysql.log
+
+before_cache:
+  - rm -f boost_1_57_0/bin.v2/config.log
+  - rm -f mysql-connector-c-6.1.6-src/Docs/INFO_BIN
