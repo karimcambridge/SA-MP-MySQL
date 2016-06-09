@@ -54,7 +54,7 @@ install:
   
   - cd boost_1_57_0/
   - if [ ! -f "b2" ]; then sudo bash bootstrap.sh --prefix=/usr/local --with-libraries=system,chrono,thread,date_time,atomic; fi
-  - sudo ./b2 variant=${BUILD_TYPE,,} link=static threading=multi address-model=32 runtime-link=shared -j2 -d0 install
+  - sudo ./b2 variant=${BUILD_TYPE,,} link=static threading=multi address-model=32 runtime-link=shared -j2 install
   - cd ..
   - sudo ldconfig
 
