@@ -27,11 +27,11 @@ cache:
     - mysql-connector-c-6.1.6-src
 
 before_install:
-  - [ -f "mysql-connector-c-6.1.6-src/CMakeLists.txt" ] || wget "http://dev.mysql.com/get/Downloads/Connector-C/mysql-connector-c-6.1.6-src.tar.gz"
-  - [ -f "mysql-connector-c-6.1.6-src/CMakeLists.txt" ] || tar xzf mysql-connector-c-6.1.6-src.tar.gz
+  - if [ ! -f "mysql-connector-c-6.1.6-src/CMakeLists.txt" ]; then wget "http://dev.mysql.com/get/Downloads/Connector-C/mysql-connector-c-6.1.6-src.tar.gz"; fi
+  - if [ ! -f "mysql-connector-c-6.1.6-src/CMakeLists.txt" ]; then tar xzf mysql-connector-c-6.1.6-src.tar.gz; fi
   
-  - [ -f "boost_1_57_0/bootstrap.sh" ] || wget "http://sourceforge.net/projects/boost/files/boost/1.57.0/boost_1_57_0.tar.gz"
-  - [ -f "boost_1_57_0/bootstrap.sh" ] || tar xzf boost_1_57_0.tar.gz
+  - if [ ! -f "boost_1_57_0/bootstrap.sh" ]; then wget "http://sourceforge.net/projects/boost/files/boost/1.57.0/boost_1_57_0.tar.gz"; fi
+  - if [ ! -f "boost_1_57_0/bootstrap.sh" ]; then tar xzf boost_1_57_0.tar.gz; fi
   
   - wget http://files.sa-mp.com/samp037svr_R2-1.tar.gz
   - tar xzf samp037svr_R2-1.tar.gz
