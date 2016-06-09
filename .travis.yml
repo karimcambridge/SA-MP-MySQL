@@ -27,11 +27,11 @@ cache:
     - mysql-connector-c-6.1.6-src
 
 before_install:
-  - if [ ! -d "mysql-connector-c-6.1.6-src" ]; then wget "http://dev.mysql.com/get/Downloads/Connector-C/mysql-connector-c-6.1.6-src.tar.gz"; fi
-  - if [ ! -d "mysql-connector-c-6.1.6-src" ]; then tar xzf mysql-connector-c-6.1.6-src.tar.gz; fi
+  - if [ "$(ls -A mysql-connector-c-6.1.6-src)" ]; then wget "http://dev.mysql.com/get/Downloads/Connector-C/mysql-connector-c-6.1.6-src.tar.gz"; fi
+  - if [ "$(ls -A mysql-connector-c-6.1.6-src)" ]; then tar xzf mysql-connector-c-6.1.6-src.tar.gz; fi
   
-  - if [ ! -d "boost_1_57_0" ]; then wget "http://sourceforge.net/projects/boost/files/boost/1.57.0/boost_1_57_0.tar.gz"; fi
-  - if [ ! -d "boost_1_57_0" ]; then tar xzf boost_1_57_0.tar.gz; fi
+  - if [ "$(ls -A boost_1_57_0)" ]; then wget "http://sourceforge.net/projects/boost/files/boost/1.57.0/boost_1_57_0.tar.gz"; fi
+  - if [ "$(ls -A boost_1_57_0)" ]; then tar xzf boost_1_57_0.tar.gz; fi
   
   - wget http://files.sa-mp.com/samp037svr_R2-1.tar.gz
   - tar xzf samp037svr_R2-1.tar.gz
