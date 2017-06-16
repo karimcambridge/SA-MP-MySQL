@@ -18,7 +18,12 @@ CConnection::CConnection(const char *host, const char *user, const char *passw,
 					 db ? db : "(nullptr)",
 					 static_cast<const void *>(options));
 
-	assert(options != nullptr);
+	if (options == nullptr)
+	{
+		CLog::Get()->Log(LogLevel::ERROR,
+						 "CConnection::CConnection - Options is nullptr");
+		return;
+	}
 
 	//initialize
 	m_Connection = mysql_init(nullptr);
@@ -46,6 +51,8 @@ CConnection::CConnection(const char *host, const char *user, const char *passw,
 					  ca.empty() ? nullptr : ca.c_str(),
 					  capath.empty() ? nullptr : capath.c_str(),
 					  cipher.empty() ? nullptr : cipher.c_str());
+		CLog::Get()->Log(LogLevel::DEBUG,
+						 "CConnection::CConnection - Options are set properly");
 	}
 
 	//prepare connection flags through passed options
@@ -53,10 +60,16 @@ CConnection::CConnection(const char *host, const char *user, const char *passw,
 	if (options->GetOption<bool>(COptions::Type::MULTI_STATEMENTS) == true)
 		connect_flags |= CLIENT_MULTI_STATEMENTS;
 
+	CLog::Get()->Log(LogLevel::DEBUG,
+						 "CConnection::CConnection - Connecting to MySQL");
+
 	//connect
 	auto *result = mysql_real_connect(m_Connection, host, user, passw, db,
 					options->GetOption<unsigned int>(COptions::Type::SERVER_PORT),
 					nullptr, connect_flags);
+
+	CLog::Get()->Log(LogLevel::DEBUG,
+						 "CConnection::CConnection - MySQL connect attempt succeeded");
 
 	if (result == nullptr)
 	{
